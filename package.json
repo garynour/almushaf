@@ -1,0 +1,46 @@
+{
+  "name": "almushaf-almumin",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "test": "tsx --test src/utils/*.test.ts",
+    "assets": "capacitor-assets generate --android --iconBackgroundColor \"#0A1328\" --splashBackgroundColor \"#0A1328\"",
+    "android:prepare": "npm run build && cap add android && node scripts/android-setup.mjs && cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/geolocation": "^8.0.0",
+    "@capacitor/local-notifications": "^8.0.0",
+    "@fontsource/amiri": "^5.0.0",
+    "@fontsource/amiri-quran": "^5.0.0",
+    "@fontsource/cairo": "^5.0.0",
+    "canvas-confetti": "^1.9.4",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "page-flip": "^2.0.7",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.0.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^22.14.0",
+    "@types/page-flip": "^2.0.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0",
+    "vite-plugin-pwa": "^2.0.0"
+  }
+}

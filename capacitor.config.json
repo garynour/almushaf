@@ -1,0 +1,21 @@
+{
+  "appId": "com.quran.almumin.app",
+  "appName": "المصحف",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#0A1328",
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#0A1328",
+      "showSpinner": false
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_notification",
+      "iconColor": "#0D9488"
+    }
+  }
+}

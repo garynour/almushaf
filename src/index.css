@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@layer base {
+  html {
+    /* User-selectable text size (Settings > reading font size). 1 = default. */
+    font-size: calc(16px * var(--font-scale, 1));
+  }
+
+  /* Quran/tafsir text stays selectable & copyable; only controls are non-selectable */
+  button,
+  nav,
+  [role="button"] {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  :root {
+    --color-emerald: #0D9488;
+    --color-emerald-light: #2DD4BF;
+    --color-emerald-dark: #0F3D2E;
+    --color-gold: #D4AF37;
+    --color-gold-light: #F3D98B;
+    --color-gold-dark: #A67C1E;
+    --color-ivory: #F4F6FA;
+    --color-ivory-page: #FAF7F0;
+    --color-border: #E2E8F0;
+    --color-text: #0F172A;
+    --color-muted: #64748B;
+    --color-card: #FFFFFF;
+    --color-chip: #EEF2F6;
+    --color-sky-top: #0A1328;
+    --color-sky-bottom: #13254B;
+  }
+
+  [data-theme="dark"], .dark {
+    --color-emerald: #2DD4BF;
+    --color-emerald-light: #5EEAD4;
+    --color-emerald-dark: #0D9488;
+    --color-gold: #E5C168;
+    --color-gold-light: #F8DF9C;
+    --color-gold-dark: #B68F36;
+    --color-ivory: #0A1328;
+    --color-ivory-page: #0E1B36;
+    --color-border: rgba(229, 193, 104, 0.22);
+    --color-text: #F8FAFC;
+    --color-muted: #94A3B8;
+    --color-card: #132242;
+    --color-chip: #192C54;
+    --color-sky-top: #070E1F;
+    --color-sky-bottom: #102042;
+  }
+
+  body {
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #EEF2F7;
+    color: #0F172A;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .dark body, [data-theme="dark"] body {
+    background-color: #060B18;
+    color: #F8FAFC;
+  }
+}
+
+/* Subtle Islamic Geometric Lattice Backdrop */
+.islamic-bg-pattern {
+  background-image: radial-gradient(circle at 20% 15%, rgba(45, 212, 191, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba(229, 193, 104, 0.06) 0%, transparent 45%);
+}
+
+/* Fluid Glass Card Surface */
+.fluid-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 24px -8px rgba(15, 23, 42, 0.08);
+}
+
+.dark .fluid-card,
+[data-theme="dark"] .fluid-card {
+  background: linear-gradient(180deg, rgba(21, 36, 70, 0.92) 0%, rgba(14, 26, 52, 0.96) 100%);
+  border: 1px solid rgba(229, 193, 104, 0.18);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.55);
+}
+
+/* Distinct Luxury Prayer Surface */
+.prayer-card-surface {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border: 1px solid rgba(13, 148, 136, 0.16);
+  box-shadow: 0 10px 26px -8px rgba(15, 30, 61, 0.1);
+}
+
+.dark .prayer-card-surface,
+[data-theme="dark"] .prayer-card-surface {
+  background: linear-gradient(180deg, #132242 0%, #0D1831 100%);
+  border: 1px solid rgba(45, 212, 191, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.font-cairo {
+  font-family: 'Cairo', sans-serif;
+}
+
+.font-quran {
+  font-family: 'Amiri Quran', 'Amiri', serif;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(229, 193, 104, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 212, 191, 0.6);
+}
+
+/* Tajweed Rule Highlights */
+.tajweed-madd-obligatory,
+.tajweed-madd-wajib,
+.tajweed-o {
+  color: #C62828;
+  font-weight: 700;
+}
+
+.tajweed-madd-lazim,
+.tajweed-m {
+  color: #AD1457;
+  font-weight: 800;
+}
+
+.tajweed-madd-jaiz,
+.tajweed-madd-arid,
+.tajweed-c,
+.tajweed-p {
+  color: #D84315;
+  font-weight: 700;
+}
+
+.tajweed-ghunnah,
+.tajweed-g {
+  color: #1B5E20;
+  font-weight: 700;
+}
+
+.tajweed-ikhfa,
+.tajweed-f {
+  color: #2E7D32;
+  font-weight: 700;
+}
+
+.tajweed-idgham-ghunnah,
+.tajweed-w,
+.tajweed-a,
+.tajweed-d {
+  color: #00695C;
+  font-weight: 700;
+}
+
+.tajweed-qalqalah,
+.tajweed-q {
+  color: #0D47A1;
+  font-weight: 700;
+}
+
+.tajweed-silent,
+.tajweed-s,
+.tajweed-h,
+.tajweed-l,
+.tajweed-u,
+.tajweed-b {
+  color: #757575;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.tajweed-iqlab,
+.tajweed-i {
+  color: #00695C;
+  font-weight: 700;
+}
+
+.tajweed-n {
+  color: inherit;
+}
+
+/* Dark Mode Tajweed Vibrancy (Matches Midnight Navy Mushaf in Mockup) */
+.dark .tajweed-madd-obligatory,
+.dark .tajweed-madd-wajib,
+.dark .tajweed-o,
+[data-theme="dark"] .tajweed-madd-obligatory,
+[data-theme="dark"] .tajweed-madd-wajib,
+[data-theme="dark"] .tajweed-o {
+  color: #FB7185;
+}
+
+.dark .tajweed-madd-lazim,
+.dark .tajweed-m,
+[data-theme="dark"] .tajweed-madd-lazim,
+[data-theme="dark"] .tajweed-m {
+  color: #F43F5E;
+}
+
+.dark .tajweed-madd-jaiz,
+.dark .tajweed-madd-arid,
+.dark .tajweed-c,
+.dark .tajweed-p,
+[data-theme="dark"] .tajweed-madd-jaiz,
+[data-theme="dark"] .tajweed-madd-arid,
+[data-theme="dark"] .tajweed-c,
+[data-theme="dark"] .tajweed-p {
+  color: #FBBF24;
+}
+
+.dark .tajweed-ghunnah,
+.dark .tajweed-ikhfa,
+.dark .tajweed-g,
+.dark .tajweed-f,
+[data-theme="dark"] .tajweed-ghunnah,
+[data-theme="dark"] .tajweed-ikhfa,
+[data-theme="dark"] .tajweed-g,
+[data-theme="dark"] .tajweed-f {
+  color: #34D399;
+}
+
+.dark .tajweed-idgham-ghunnah,
+.dark .tajweed-w,
+.dark .tajweed-a,
+[data-theme="dark"] .tajweed-idgham-ghunnah,
+[data-theme="dark"] .tajweed-w,
+[data-theme="dark"] .tajweed-a {
+  color: #2DD4BF;
+}
+
+.dark .tajweed-qalqalah,
+.dark .tajweed-q,
+[data-theme="dark"] .tajweed-qalqalah,
+[data-theme="dark"] .tajweed-q {
+  color: #60A5FA;
+}
+
+.dark .tajweed-silent,
+.dark .tajweed-s,
+.dark .tajweed-h,
+.dark .tajweed-l,
+.dark .tajweed-u,
+[data-theme="dark"] .tajweed-silent,
+[data-theme="dark"] .tajweed-s,
+[data-theme="dark"] .tajweed-h,
+[data-theme="dark"] .tajweed-l,
+[data-theme="dark"] .tajweed-u {
+  color: #94A3B8;
+  opacity: 0.72;
+}
+
+.dark .tajweed-iqlab,
+.dark .tajweed-i,
+[data-theme="dark"] .tajweed-iqlab,
+[data-theme="dark"] .tajweed-i {
+  color: #5EEAD4;
+}
+
+.tajweed-tafkheem {
+  color: #1B5E20;
+  font-weight: 600;
+}
+
+/* Page flip 3D book spine effect */
+.book-spine-right {
+  box-shadow: inset -10px 0 20px -8px rgba(0, 0, 0, 0.35), inset -2px 0 6px rgba(120, 95, 40, 0.3);
+}
+
+.book-shadow {
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(229, 193, 104, 0.3);
+}
+
+@keyframes touchFeedback {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+.touch-bounce:active {
+  animation: touchFeedback 0.15s ease-in-out;
+}

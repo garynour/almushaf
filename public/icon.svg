@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Rich Metallic Gold Ring Gradients matching reference image -->
+    <linearGradient id="goldBezel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE8A3"/>
+      <stop offset="25%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#AA771C"/>
+      <stop offset="75%" stop-color="#FDF0CD"/>
+      <stop offset="100%" stop-color="#805A17"/>
+    </linearGradient>
+    <linearGradient id="goldInnerRing" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#996515"/>
+      <stop offset="40%" stop-color="#F5D77F"/>
+      <stop offset="70%" stop-color="#C59B27"/>
+      <stop offset="100%" stop-color="#664608"/>
+    </linearGradient>
+    <!-- Deep Emerald / Teal Inner Circle Gradient -->
+    <radialGradient id="emeraldBg" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#0E5E48"/>
+      <stop offset="65%" stop-color="#073B2D"/>
+      <stop offset="100%" stop-color="#032018"/>
+    </radialGradient>
+    <!-- Soft Drop Shadow -->
+    <filter id="iconShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="mosqueGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#FFFFFF" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Soft Shadow & Background -->
+  <g filter="url(#iconShadow)">
+    <!-- Outer Gold Bezel Rim -->
+    <circle cx="256" cy="256" r="236" fill="url(#goldBezel)"/>
+    <!-- Gold Ring Groove -->
+    <circle cx="256" cy="256" r="218" fill="none" stroke="#6B4B10" stroke-width="3" opacity="0.6"/>
+    <!-- Inner Gold Ridge -->
+    <circle cx="256" cy="256" r="206" fill="url(#goldInnerRing)"/>
+    <circle cx="256" cy="256" r="192" fill="#3D2905" opacity="0.8"/>
+  </g>
+
+  <!-- Dark Emerald/Teal Center Circle -->
+  <circle cx="256" cy="256" r="188" fill="url(#emeraldBg)"/>
+
+  <!-- Subtle Islamic Star Pattern Watermark in Background -->
+  <g opacity="0.08" stroke="#FFE8A3" stroke-width="2" fill="none">
+    <circle cx="256" cy="256" r="140"/>
+    <polygon points="256,126 292,220 386,256 292,292 256,386 220,292 126,256 220,220"/>
+    <polygon points="256,146 334,178 366,256 334,334 256,366 178,334 146,256 178,178"/>
+  </g>
+
+  <!-- Pure White Mosque Silhouette Matching Reference Image -->
+  <g transform="translate(256, 264)" fill="#FFFFFF" filter="url(#mosqueGlow)">
+    <!-- Base Platform & Floor -->
+    <rect x="-115" y="88" width="230" height="10" rx="3"/>
+    <rect x="-105" y="78" width="210" height="10" rx="2"/>
+
+    <!-- Main Mosque Building Body -->
+    <rect x="-72" y="10" width="144" height="70" rx="4"/>
+    
+    <!-- Arched Grand Central Entrance Door -->
+    <path d="M -18 80 L -18 42 C -18 30 18 30 18 42 L 18 80 Z" fill="#073B2D"/>
+    <!-- Central Door Arched Outline -->
+    <path d="M -15 80 L -15 44 C -15 34 15 34 15 44 L 15 80" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- Left & Right Windows -->
+    <path d="M -48 68 L -48 44 C -48 37 -34 37 -34 44 L -34 68 Z" fill="#073B2D"/>
+    <path d="M 34 68 L 34 44 C 34 37 48 37 48 44 L 48 68 Z" fill="#073B2D"/>
+
+    <!-- Central Grand Dome -->
+    <rect x="-56" y="6" width="112" height="6" rx="2"/>
+    <path d="M -50 6 C -54 -35 -18 -68 0 -84 C 18 -68 54 -35 50 6 Z"/>
+    
+    <!-- Crescent Finial on Central Dome -->
+    <path d="M 0 -84 L 0 -102" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M -3 -112 A 8 8 0 1 0 7 -98 A 6.5 6.5 0 1 1 -3 -112 Z"/>
+
+    <!-- Left Minaret -->
+    <g transform="translate(-90, 0)">
+      <rect x="-11" y="25" width="22" height="55" rx="2"/>
+      <path d="M -15 25 L 15 25 L 13 20 L -13 20 Z"/>
+      <rect x="-9" y="-35" width="18" height="55"/>
+      <path d="M -13 -35 L 13 -35 L 11 -40 L -11 -40 Z"/>
+      <path d="M -8 -40 C -8 -60 0 -72 0 -76 C 0 -72 8 -60 8 -40 Z"/>
+      <path d="M 0 -76 L 0 -88" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="0" cy="-91" r="3"/>
+    </g>
+
+    <!-- Right Minaret -->
+    <g transform="translate(90, 0)">
+      <rect x="-11" y="25" width="22" height="55" rx="2"/>
+      <path d="M -15 25 L 15 25 L 13 20 L -13 20 Z"/>
+      <rect x="-9" y="-35" width="18" height="55"/>
+      <path d="M -13 -35 L 13 -35 L 11 -40 L -11 -40 Z"/>
+      <path d="M -8 -40 C -8 -60 0 -72 0 -76 C 0 -72 8 -60 8 -40 Z"/>
+      <path d="M 0 -76 L 0 -88" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="0" cy="-91" r="3"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+/manifest.json
+  Access-Control-Allow-Origin: *
+  Content-Type: application/manifest+json; charset=utf-8
+
+/sw.js
+  Cache-Control: no-cache
+
+/sw-notifications.js
+  Cache-Control: no-cache
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
