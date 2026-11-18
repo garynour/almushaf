@@ -1,6 +1,7 @@
 // Runs after `cap add android`. Everything Capacitor does not configure for us:
 // permissions, notification sounds/icons, version numbers. Safe to run more than once.
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -68,6 +69,17 @@ const copied = copyDir(path.join(root, 'android-resources'), resDir);
 console.log(`✔ Copied ${copied} resource files (sounds + notification icons) into res/`);
 for (const f of ['raw/athan.wav', 'raw/iqama.mp3', 'drawable-xxhdpi/ic_stat_notification.png']) {
   if (!fs.existsSync(path.join(resDir, f))) fail(`Missing resource: ${f}`);
+}
+
+// ---- 2b) Fixed debug signing key (CI only) ------------------------------------
+// Every CI run would otherwise create a NEW random debug key, and Android refuses to install an
+// APK over an older one signed with a different key. A fixed (non-secret) debug key fixes that.
+const fixedDebugKey = path.join(root, 'scripts/debug.keystore');
+if (process.env.CI && fs.existsSync(fixedDebugKey)) {
+  const dir = path.join(os.homedir(), '.android');
+  fs.mkdirSync(dir, { recursive: true });
+  fs.copyFileSync(fixedDebugKey, path.join(dir, 'debug.keystore'));
+  console.log('✔ Using fixed debug keystore (test APKs can be installed over each other)');
 }
 
 // ---- 3) Version ---------------------------------------------------------------

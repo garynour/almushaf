@@ -125,7 +125,7 @@ export const NotificationPermissionBanner: React.FC<NotificationPermissionBanner
               إشعارات الصلاة المحلية والعمل في الخلفية
             </b>
             <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
-              جدولة أوقات الصلاة للعمل حتى أثناء إغلاق التطبيق
+              جدولة أوقات الصلاة للعمل حتى أثناء إغلاق التطبيق{bgCaps ? (bgCaps.isNative ? ' • تطبيق أندرويد' : ' • نسخة الويب') : ''}
             </span>
           </div>
         </div>

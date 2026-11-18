@@ -19,7 +19,29 @@
     <link rel="manifest" href="/manifest.json" />
   </head>
   <body class="antialiased overflow-x-hidden font-sans">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Startup splash: shown instantly while the app loads, replaced by React when it mounts -->
+      <div id="boot" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#0A1328;font-family:system-ui,-apple-system,sans-serif">
+        <img src="/pwa-192x192.png" width="112" height="112" alt="" style="border-radius:28px" />
+        <div style="font-size:30px;font-weight:800;color:#E5C168">المصحف</div>
+        <div style="font-size:14px;color:#94A3B8">القرآن الكريم • مواقيت الصلاة • الأذكار</div>
+      </div>
+    </div>
+    <script>
+      // If the app fails to start, show the reason on the splash instead of a blank screen.
+      (function () {
+        function show(m) {
+          var b = document.getElementById('boot');
+          if (!b) return;
+          var p = document.createElement('pre');
+          p.style.cssText = 'max-width:90%;white-space:pre-wrap;font-size:11px;color:#fca5a5;direction:ltr;margin:8px 0 0';
+          p.textContent = String(m).slice(0, 400);
+          b.appendChild(p);
+        }
+        window.addEventListener('error', function (e) { show(e.message || e); });
+        window.addEventListener('unhandledrejection', function (e) { show((e.reason && e.reason.message) || e.reason); });
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

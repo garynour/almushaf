@@ -77,12 +77,19 @@ export default function App() {
     preloadFullQuranOffline();
   }, []);
 
-  // Settings & Theme (Midnight Navy Dark matching the luxury design is default, toggleable to Light)
+  // Settings & Theme: Light is the default (the user can switch to Dark or Auto in Settings).
+  // One-time reset so test installs that were saved as "dark" before this change also become light.
   const [themeMode, setThemeMode] = useState<'auto' | 'light' | 'dark'>(() => {
     try {
-      return (localStorage.getItem('theme_mode') as any) || 'dark';
+      if (localStorage.getItem('theme_default_light_v1') !== '1') {
+        localStorage.setItem('theme_default_light_v1', '1');
+        localStorage.setItem('theme_mode', 'light');
+        return 'light';
+      }
+      const saved = localStorage.getItem('theme_mode');
+      return saved === 'dark' || saved === 'auto' || saved === 'light' ? saved : 'light';
     } catch (e) {
-      return 'dark';
+      return 'light';
     }
   });
 
