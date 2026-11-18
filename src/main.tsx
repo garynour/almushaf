@@ -1,3 +1,4 @@
+import '@capacitor/core';
 import {createRoot} from 'react-dom/client';
 import {registerSW} from 'virtual:pwa-register';
 import '@fontsource/cairo/400.css';

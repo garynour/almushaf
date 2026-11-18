@@ -69,7 +69,14 @@ export const NotificationPermissionBanner: React.FC<NotificationPermissionBanner
       await refreshCaps();
       showTempFeedback('تم تفعيل إذن الإشعارات وجدولة الخلفية بنجاح ✓', true);
     } else if (res === 'denied') {
-      showTempFeedback('تم رفض الإذن — يمكنك تفعيله من إعدادات التطبيق أو المتصفح', false);
+      showTempFeedback(
+        'تم رفض الإذن — فعّله من: إعدادات الهاتف ← التطبيقات ← المصحف ← الإشعارات',
+        false
+      );
+    } else if (res === 'unsupported') {
+      showTempFeedback('الإشعارات غير مدعومة على هذا الجهاز أو المتصفح', false);
+    } else {
+      showTempFeedback('لم يتم منح الإذن بعد — اضغط مرة أخرى ووافق في النافذة', false);
     }
   };
 
@@ -118,7 +125,7 @@ export const NotificationPermissionBanner: React.FC<NotificationPermissionBanner
               إشعارات الصلاة المحلية والعمل في الخلفية
             </b>
             <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
-              جدولة أوقات الصلاة في Service Worker للعمل حتى أثناء إغلاق التطبيق
+              جدولة أوقات الصلاة للعمل حتى أثناء إغلاق التطبيق
             </span>
           </div>
         </div>

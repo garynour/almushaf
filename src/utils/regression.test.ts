@@ -97,3 +97,29 @@ test('native notification ids are unique and fit in a 32-bit int for the whole 1
   assert.equal(new Set(ids).size, ids.length);
   assert.ok(ids.every((n) => Number.isInteger(n) && n > 0 && n < 2147483647));
 });
+
+test('isNativeApp detects the Android WebView even before @capacitor/core is loaded', async () => {
+  const { isNativeApp } = await import('./nativeNotifications.js');
+  const g = globalThis as any;
+  const saved = { cap: g.Capacitor, bridge: g.androidBridge };
+  try {
+    delete g.Capacitor;
+    delete g.androidBridge;
+    assert.equal(isNativeApp(), false); // plain browser
+
+    g.androidBridge = { postMessage() {} }; // injected by Capacitor Android
+    assert.equal(isNativeApp(), true);
+
+    delete g.androidBridge;
+    g.Capacitor = { isNative: true, platform: 'android' }; // partial object, no isNativePlatform()
+    assert.equal(isNativeApp(), true);
+
+    g.Capacitor = { getPlatform: () => 'web' };
+    assert.equal(isNativeApp(), false);
+  } finally {
+    g.Capacitor = saved.cap;
+    g.androidBridge = saved.bridge;
+    if (saved.cap === undefined) delete g.Capacitor;
+    if (saved.bridge === undefined) delete g.androidBridge;
+  }
+});

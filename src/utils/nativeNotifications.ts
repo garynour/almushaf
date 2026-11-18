@@ -36,8 +36,14 @@ let listenerReady = false;
 
 export function isNativeApp(): boolean {
   try {
-    const cap = (globalThis as any).Capacitor;
-    return !!cap && typeof cap.isNativePlatform === 'function' && cap.isNativePlatform();
+    const g = globalThis as any;
+    // Capacitor's Android bridge always injects window.androidBridge before the page runs.
+    if (g.androidBridge) return true;
+    const cap = g.Capacitor;
+    if (!cap) return false;
+    if (typeof cap.isNativePlatform === 'function') return !!cap.isNativePlatform();
+    if (typeof cap.getPlatform === 'function') return cap.getPlatform() !== 'web';
+    return cap.isNative === true || (!!cap.platform && cap.platform !== 'web');
   } catch {
     return false;
   }

@@ -231,7 +231,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           {/* Web Notification API Settings */}
           <div>
             <label className="font-bold text-slate-500 dark:text-slate-400 block mb-1.5">
-              إشعارات مواقيت الصلاة (Web Notifications)
+              إشعارات مواقيت الصلاة
             </label>
             <NotificationPermissionBanner compact />
           </div>

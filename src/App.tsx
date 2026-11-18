@@ -238,6 +238,38 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
+  // Android app: handle the system back button / back gesture ourselves (Capacitor App plugin),
+  // so it closes the top-most layer first and only leaves the app from the home screen.
+  useEffect(() => {
+    if (!isNativeApp()) return;
+    let cancelled = false;
+    let removeListener: (() => void) | undefined;
+    void import('@capacitor/app')
+      .then(async ({ App: CapApp }) => {
+        const handle = await CapApp.addListener('backButton', () => {
+          const snap = navSnapshotRef.current;
+          if (snap.activeModal !== null) {
+            setActiveModal(null);
+          } else if (snap.currentView === 'mushaf' && snap.mushafOverlayOpen) {
+            setCloseMushafOverlaySignal((s) => s + 1);
+          } else if (snap.currentView === 'mushaf') {
+            setCurrentView('quran');
+          } else if (snap.currentView !== 'home') {
+            setCurrentView('home');
+          } else {
+            void CapApp.exitApp();
+          }
+        });
+        if (cancelled) handle.remove();
+        else removeListener = () => handle.remove();
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+      removeListener?.();
+    };
+  }, []);
+
   // Live clock. It ticks every second only on screens that show a countdown (home / prayer).
   // On every other screen (Mushaf, adhkar...) it only checks once a minute whether the day
   // changed and does NOT re-render otherwise, so reading is no longer re-rendered every second.
