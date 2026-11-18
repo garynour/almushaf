@@ -1,0 +1,20 @@
+name: Unpack zip
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          unzip -q almushaf-final.zip
+          cp almushaf/.github/workflows/build-android.yml ./build-android.yml.txt
+          rm -rf almushaf/.github
+          cp -a almushaf/. .
+          rm -rf almushaf almushaf-final.zip
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Unpack project"
+          git push
